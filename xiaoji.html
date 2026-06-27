@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘吉鸡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #111;
+            overflow: hidden;
+            font-family: Microsoft YaHei, sans-serif;
+        }
+        /* 全屏居中容器 */
+        .page-wrap {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 固定16:9游戏画布，缩放不变形 */
+        .game-container {
+            width: min(100vw, 177.77vh);
+            height: min(56.25vw, 100vh);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+        /* 农场背景铺满画布 */
+        .farm-bg {
+            width: 100%;
+            height: 100%;
+            background-image: url("img/背景.png");
+            background-size: cover;
+            background-position: center;
+        }
+        /* 左上角信息面板 */
+        .info-box {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.85), rgba(10, 15, 25, 0.9));
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 14px;
+            z-index: 10;
+            line-height: 2;
+            font-size: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: panelFadeIn 0.6s ease-out;
+            backdrop-filter: blur(8px);
+        }
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.6), transparent);
+            border-radius: 14px 14px 0 0;
+        }
+        .info-box .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .info-box .info-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .info-box .info-item:hover::after {
+            left: 100%;
+        }
+        .info-box .info-icon {
+            font-size: 18px;
+            filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5));
+        }
+        .info-box .info-value {
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+            transition: all 0.3s ease;
+            display: inline-block;
+            min-width: 30px;
+        }
+        .info-box .info-value.updating {
+            animation: numberPulse 0.4s ease;
+            transform: scale(1.2);
+        }
+        @keyframes panelFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        @keyframes numberPulse {
+            0%, 100% {
+                color: #ffd700;
+            }
+            50% {
+                color: #ff6b6b;
+            }
+        }
+        /* 底部工具栏 */
+        .tool-bar {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            padding: 12px 20px;
+            border-radius: 14px;
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+
+        }
+        .tool-item {
+            width: 64px;
+            height: 64px;
+            background: rgba(255,255,255,0.15);
+            border: 3px solid transparent;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .collect-all-egg {
+            width: 64px;
+            height: 64px;
+            background: rgba(255,255,255,0.15);
+            border: 3px solid #ffdd33;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .collect-all-egg.used {
+            border-color: transparent;
+            background: rgba(255,255,255,0.08);
+            opacity: 0.6;
+        }
+        .collect-all-egg img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+        /* 选中工具亮黄边框 */
+        .tool-item.active {
+            border-color: #ffdd33;
+            background: rgba(255,255,255,0.3);
+        }
+        .tool-item img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+        /* 小鸡、鸡蛋动态元素 */
+        .chicken, .egg-item {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            cursor: pointer;
+        }
+        /* 游戏结束弹窗 */
+        .game-over-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(5px);
+        }
+        .game-over-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .game-over-box {
+            background: linear-gradient(145deg, #2a2a3a, #1a1a2a);
+            padding: 40px 50px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: scale(0.8);
+            transition: transform 0.5s ease;
+            max-width: 90%;
+        }
+        .game-over-overlay.show .game-over-box {
+            transform: scale(1);
+        }
+        .game-over-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 107, 107, 0.6);
+        }
+        .game-over-info {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 2;
+            margin-bottom: 25px;
+        }
+        .game-over-info span {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .restart-btn {
+            background: linear-gradient(145deg, #ffd700, #ffaa00);
+            color: #1a1a2a;
+            border: none;
+            padding: 12px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+        .restart-btn:active {
+            transform: translateY(0);
+        }
+        .chicken img, .egg-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .chicken img {
+            transform-origin: center;
+            transition: transform 0.08s linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <div class="game-container" id="gameBox">
+            <!-- 农场场地 -->
+            <div class="farm-bg" id="farmField"></div>
+
+            <!-- 信息面板 -->
+            <div class="info-box">
+                <div class="info-item">
+                    <span class="info-icon">📅</span>
+                    <span>天数：第</span>
+                    <span class="info-value" id="dayText">1</span>
+                    <span>天</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">🐥</span>
+                    <span>小鸡数量：</span>
+                    <span class="info-value" id="chickenNum">1</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">💰</span>
+                    <span>持有金币：</span>
+                    <span class="info-value" id="moneyText">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">🥚</span>
+                    <span>库存鸡蛋：</span>
+                    <span class="info-value" id="eggStockText">0</span>
+                </div>
+            </div>
+
+            <!-- 工具栏 -->
+            <div class="tool-bar">
+                <div class="tool-item" data-tool="feed">
+                    <img src="img/饲料.png" alt="饲料">
+                </div>
+                <div class="tool-item" data-tool="egg">
+                    <img src="img/鸡蛋.png" alt="鸡蛋">
+                </div>
+                <div class="tool-item" data-tool="net">
+                    <img src="img/捕网.png" alt="捕网">
+                </div>
+                <div class="collect-all-egg" id="collectEggBtn">
+                    <img src="img/超级捕网.png" alt="一键收蛋">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏结束弹窗 -->
+    <div class="game-over-overlay" id="gameOverOverlay">
+        <div class="game-over-box">
+            <div class="game-over-title">游戏结束</div>
+            <div class="game-over-info">
+                <div>坚持天数：<span id="endDay">0</span> 天</div>
+                <div>持有金币：<span id="endMoney">0</span> 个</div>
+            </div>
+            <button class="restart-btn" id="restartBtn">重新开始</button>
+        </div>
+    </div>
+
+    <script>
+        // 全局游戏数据，刷新页面自动重置初始状态
+        const gameData = {
+            day: 1,
+            lastEggDay: 1,
+            collectEggUsedDay: 0, 
+            money: 0,
+            eggStock: 0,
+            currentTool: null,
+            chickenList: [],
+            eggList: [],
+            width: 0,
+            height: 0,
+            dayTimer: null
+        }
+
+        // DOM缓存
+        const gameBox = document.getElementById("gameBox");
+        const farmField = document.getElementById("farmField");
+        const dayText = document.getElementById("dayText");
+        const chickenNum = document.getElementById("chickenNum");
+        const moneyText = document.getElementById("moneyText");
+        const eggStockText = document.getElementById("eggStockText");
+        const toolItems = document.querySelectorAll(".tool-item");
+        const gameOverOverlay = document.getElementById("gameOverOverlay");
+        const endDay = document.getElementById("endDay");
+        const endMoney = document.getElementById("endMoney");
+        const restartBtn = document.getElementById("restartBtn");
+
+        // 初始化画布宽高
+        function setFieldSize() {
+            gameData.width = gameBox.offsetWidth;
+            gameData.height = gameBox.offsetHeight;
+        }
+        window.addEventListener("resize", setFieldSize);
+        setFieldSize();
+
+        // 更新左上角文字
+        function refreshUI() {
+            updateValue(dayText, gameData.day);
+            updateValue(chickenNum, gameData.chickenList.length);
+            updateValue(moneyText, gameData.money);
+            updateValue(eggStockText, gameData.eggStock);
+        }
+        function updateValue(element, newValue) {
+            if (element.textContent !== String(newValue)) {
+                element.textContent = newValue;
+                element.classList.add('updating');
+                setTimeout(() => {
+                    element.classList.remove('updating');
+                }, 400);
+            }
+        }
+
+        // 检查游戏是否结束
+        function checkGameOver() {
+            if (gameData.chickenList.length === 0 && gameData.eggStock === 0) {
+                endDay.textContent = gameData.day;
+                endMoney.textContent = gameData.money;
+                gameOverOverlay.classList.add('show');
+            }
+        }
+
+        // 每30秒天数+1
+        setInterval(() => {
+            gameData.day++;
+            refreshUI();
+    // 新增：每过1天，所有场上小鸡各自生成一枚鸡蛋
+            if(gameData.day > gameData.lastEggDay){
+                gameData.lastEggDay = gameData.day;
+                gameData.chickenList.forEach(chicken=>{
+                    const egg = new Egg(chicken.x, chicken.y);
+                    gameData.eggList.push(egg);
+                })
+                refreshUI();
+            }
+        }, 120000);
+
+        // 小鸡类：自动行走、喂食、下蛋
+        class Chicken {
+            constructor() {
+                this.x = Math.random() * (gameData.width - 80) + 20;
+                this.y = Math.random() * (gameData.height - 500) + 300;
+                this.lastX = this.x;
+                this.feedCount = 0;
+                this.timer = null;
+
+                this.dom = document.createElement("div");
+                this.dom.className = "chicken";
+                this.dom.style.left = this.x + "px";
+                this.dom.style.top = this.y + "px";
+                this.dom.innerHTML = `<img src="img/小鸡.png">`;
+                farmField.appendChild(this.dom);
+
+                this.autoWalk();
+            }
+            // 自主随机走动
+            autoWalk() {
+                const walkLoop = () => {
+                    const targetX = Math.random() * (gameData.width - 80) + 20;
+                    const targetY = Math.random() * (gameData.height - 500) + 300;
+                    const speed = 0.7;
+
+                    const move = () => {
+                        const dx = targetX - this.x;
+                        const dy = targetY - this.y;
+                        if (Math.abs(dx) < 2 && Math.abs(dy) < 2) return;
+                        this.x += dx > 0 ? speed : -speed;
+                        this.y += dy > 0 ? speed : -speed;
+                        this.dom.style.left = this.x + "px";
+                        this.dom.style.top = this.y + "px";
+                        const img = this.dom.querySelector('img');
+                        if (this.x < this.lastX) {
+                        // 向左走，水平翻转
+                            img.style.transform = 'scaleX(-1)';
+                        } else if (this.x > this.lastX) {
+                        // 向右走，恢复原图
+                            img.style.transform = 'scaleX(1)';
+                        }
+                        this.lastX = this.x;
+                        requestAnimationFrame(move);
+                    }
+                    move();
+                    this.timer = setTimeout(walkLoop, 2000 + Math.random() * 3000);
+                }
+                walkLoop();
+            }
+            // 喂食逻辑
+            feed() {
+                this.feedCount++;
+                if (this.feedCount >= 3) {
+                    this.feedCount = 0;
+                    this.layEgg();
+                }
+            }
+            // 生成鸡蛋到场地
+            layEgg() {
+                const egg = new Egg(this.x, this.y);
+                gameData.eggList.push(egg);
+                refreshUI();
+            }
+            // 销毁小鸡
+            remove() {
+                clearTimeout(this.timer);
+                this.dom.remove();
+                checkGameOver();
+            }
+        }
+
+        // 场地鸡蛋类
+        class Egg {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.dom = document.createElement("div");
+                this.dom.className = "egg-item";
+                this.dom.style.left = x + "px";
+                this.dom.style.top = y + "px";
+                this.dom.innerHTML = `<img src="img/鸡蛋.png">`;
+                farmField.appendChild(this.dom);
+            }
+            remove() {
+                this.dom.remove();
+            }
+        }
+
+        // 切换工具栏工具，增加亮色边框
+        toolItems.forEach(item => {
+            item.addEventListener("click", () => {
+                toolItems.forEach(t => t.classList.remove("active"));
+                item.classList.add("active");
+                gameData.currentTool = item.dataset.tool;
+            })
+        })
+
+        // 场地点击交互
+        farmField.addEventListener("click", (e) => {
+            const clickChicken = e.target.closest(".chicken");
+            const clickEgg = e.target.closest(".egg-item");
+            const tool = gameData.currentTool;
+            if (!tool) return;
+
+            // 工具1：饲料，点击小鸡喂食
+            if (tool === "feed" && clickChicken) {
+                const idx = gameData.chickenList.findIndex(c => c.dom === clickChicken);
+                gameData.chickenList[idx].feed();
+                return;
+            }
+
+            // 工具2：鸡蛋，点击空地孵化小鸡
+            if (tool === "egg" && !clickChicken && !clickEgg) {
+                if (gameData.eggStock <= 0) return;
+                const rect = gameBox.getBoundingClientRect();
+                const cx = e.clientX - rect.left;
+                const cy = e.clientY - rect.top;
+                gameData.eggStock--;
+                // 5种小鸡，每种20%概率
+                const rand = Math.random();
+                const newChicken = new Chicken();
+                newChicken.x = cx;
+                newChicken.y = cy;
+                newChicken.dom.style.left = cx + "px";
+                newChicken.dom.style.top = cy + "px";
+                // 0~0.2 小鸡1；0.2~0.4小鸡2；0.4~0.6小鸡3；0.6~0.8小鸡4；0.8~1小鸡5
+                if(rand >= 0.2 && rand < 0.4){
+                    newChicken.dom.querySelector("img").src = "img/小鸡2.png";
+                }else if(rand >= 0.4 && rand < 0.6){
+                    newChicken.dom.querySelector("img").src = "img/小鸡3.png";
+                }else if(rand >= 0.6 && rand < 0.8){
+                    newChicken.dom.querySelector("img").src = "img/小鸡4.png";
+                }else if(rand >= 0.8){
+                    newChicken.dom.querySelector("img").src = "img/小鸡5.png";
+                }
+                gameData.chickenList.push(newChicken);
+                refreshUI();
+                return;
+            }
+
+            // 工具3：捕网
+            if (tool === "net") {
+                // 点击小鸡捕捉，获得10~20随机金币
+                if (clickChicken) {
+                    const idx = gameData.chickenList.findIndex(c => c.dom === clickChicken);
+                    gameData.chickenList[idx].remove();
+                    gameData.chickenList.splice(idx, 1);
+                    const moneyAdd = Math.floor(Math.random() * 11) + 10;
+                    gameData.money += moneyAdd;
+                    refreshUI();
+                    checkGameOver();
+                }
+                // 点击场地鸡蛋，回收进库存
+                if (clickEgg) {
+                    const idx = gameData.eggList.findIndex(e => e.dom === clickEgg);
+                    gameData.eggList[idx].remove();
+                    gameData.eggList.splice(idx, 1);
+                    gameData.eggStock++;
+                    refreshUI();
+                    checkGameOver();
+                }
+            }
+            const collectEggBtn = document.getElementById('collectEggBtn');
+            // 一键收蛋点击事件
+            collectEggBtn.addEventListener('click', ()=>{
+            // 判断今天是否已经使用
+            if(gameData.collectEggUsedDay === gameData.day) return;
+            // 回收场上所有鸡蛋
+                gameData.eggList.forEach(egg=>egg.remove());
+                gameData.eggStock += gameData.eggList.length;
+                gameData.eggList = [];
+                refreshUI();
+            // 标记今日已使用，按钮变暗
+            gameData.collectEggUsedDay = gameData.day;
+            collectEggBtn.classList.add('used');
+            })
+
+            // 天数变化时重置按钮高亮（新一天恢复可用）
+            // 先清除已有计时器，防止多重叠加
+if(gameData.dayTimer){
+    clearInterval(gameData.dayTimer);
+}
+gameData.dayTimer = setInterval(() => {
+    gameData.day++;
+    refreshUI();
+    // 每日自动产蛋逻辑不变
+    if(gameData.day > gameData.lastEggDay){
+        gameData.lastEggDay = gameData.day;
+        gameData.chickenList.forEach(chicken=>{
+            const egg = new Egg(chicken.x, chicken.y);
+            gameData.eggList.push(egg);
+        })
+        refreshUI();
+    }
+    // 一键收蛋按钮刷新状态
+    if(gameData.collectEggUsedDay !== gameData.day){
+        collectEggBtn.classList.remove('used');
+    }
+}, 30000);
+        })
+
+        // 游戏初始化，刷新页面重置所有数据
+        function gameStart() {
+    // 新增：启动游戏前销毁旧计时器
+    if(gameData.dayTimer){
+        clearInterval(gameData.dayTimer);
+    }
+
+            // 清空场上所有小鸡鸡蛋
+            gameData.chickenList.forEach(c => c.remove());
+            gameData.eggList.forEach(e => e.remove());
+            gameData.chickenList = [];
+            gameData.eggList = [];
+
+            // 重置初始数据
+            gameData.day = 1;
+            gameData.collectEggUsedDay = 0;
+            gameData.money = 0;
+            gameData.eggStock = 0;
+            gameData.currentTool = null;
+            toolItems.forEach(t => t.classList.remove("active"));
+
+            // 初始生成1只小鸡
+            const firstChicken = new Chicken();
+            gameData.chickenList.push(firstChicken);
+            refreshUI();
+        }
+
+        window.onload = gameStart;
+
+        // 重新开始按钮，点击刷新页面
+restartBtn.addEventListener('click', () => {
+    location.reload();
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新手指南</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Noto Sans SC", Microsoft YaHei, sans-serif;
+  background: url("./img/bg.jpg") no-repeat fixed center / cover;
+  color: #111;
+  line-height: 1.7;
+}
+.wiki-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 16px;
+  padding: 20px 10px;
+}
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: rgba(209, 248, 255, 0.78);
+  border: 1px solid #84AEEC;
+  border-radius: 6px;
+  padding: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+.sidebar h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #a7d7f9;
+  padding-bottom: 6px;
+}
+.sidebar ul {
+  list-style: none;
+}
+.sidebar li {
+  margin: 6px 0;
+}
+.sidebar li a {
+  color: #0c3b64;
+  text-decoration: none;
+  font-size: 14px;
+}
+.sidebar li a:hover {
+  color: #2278bb;
+  text-decoration: underline;
+}
+.main-content {
+  flex: 1;
+  background: rgba(209, 248, 255, 0.73);
+  border: 1px solid #A7D7F9;
+  border-radius: 6px;
+  padding: 24px 32px;
+}
+.page-btn-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.page-btn-group a {
+  padding: 6px 16px;
+  background: rgba(132, 174, 236, 0.4);
+  border: 1px solid #84AEEC;
+  border-radius: 4px;
+  color: #0c3b64;
+  text-decoration: none;
+}
+.page-btn-group a:hover {
+  background: rgba(132, 174, 236, 0.7);
+}
+.header-banner {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.header-banner img {
+  max-width: 650px;
+  width: 90%;
+}
+h1 {
+  font-size: 28px;
+  color: #0f4069;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #a7d7f9;
+  padding-bottom: 8px;
+}
+h2 {
+  font-size: 22px;
+  color: #144b7a;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid #b9dcf8;
+  padding-bottom: 6px;
+}
+h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin: 20px 10px 8px;
+}
+p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+ul, ol {
+  margin: 10px 0 10px 26px;
+}
+li {
+  margin: 6px 0;
+}
+table.wikitable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background: rgba(255,255,255,0.65);
+}
+table.wikitable th, table.wikitable td {
+  border: 1px solid #84AEEC;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+table.wikitable th {
+  background: rgba(132, 174, 236, 0.4);
+  color: #0a3052;
+}
+.content-img {
+  max-width: 100%;
+  margin: 12px 0;
+  border: 2px solid #a7d7f9;
+  border-radius: 4px;
+}
+.scroll-img {
+  max-width: 100%;
+  margin: 8px 0;
+}
+.create-img {
+  max-width: 420px;
+  margin: 12px 0;
+}
+</style>
+</head>
+<body>
+<div class="wiki-wrap">
+  <aside class="sidebar">
+    <h3>目录</h3>
+    <ul>
+      <li><a href="#create-role">1 创建角色</a></li>
+      <li class="sub"><a href="#advanced-set">1.1高级游戏设置</a></li>
+      <li><a href="#farm-map">2 农场地图</a></li>
+      <li><a href="#control">3 控制</a></li>
+      <li><a href="#first-harvest">4 第一次收获</a></li>
+      <li class="sub"><a href="#water">4.1浇水</a></li>
+      <li class="sub"><a href="#tip">4.2提示</a></li>
+      <li><a href="#energy">5 体力</a></li>
+      <li><a href="#skill">6 技能</a></li>
+      <li><a href="#villager">7 村民与社交</a></li>
+      <li><a href="#tv">8 电视</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <!-- 跳转主页并定位到主页第二章 #content-wrap -->
+    <div class="page-btn-group">
+      <a href="index.html#content-wrap">返回主页</a>
+      <a href="tb1-1.html">玩家角色页面</a>
+      <a href="tb1-2.html">技能页面</a>
+    </div>
+
+    <div class="header-banner">
+      <img src="./img/xinshou.png" alt="星露谷物语 新手指南">
+    </div>
+
+    <h1>新手指南</h1>
+    <p><strong>星露谷物语</strong> 是一个非线性、无固定结局的游戏，玩家可以自由经营农场，通过多种方式获取收入，包含种植、采矿、钓鱼、战斗、社交等玩法。</p>
+    <p>游戏中有多种赚钱途径，也有大量可交互内容：农作物种植、矿洞探险、采集野货、钓鱼、制作加工品、与村民提升好感、完成任务、收集博物馆藏品等。</p>
+
+    <h2 id="create-role">创建角色</h2>
+    <p>参见：玩家角色</p>
+    <p>开局新建存档时可以自定义角色外观、名字、农场名称、最喜欢的物品与宠物偏好。</p>
+    <ul>
+      <li>外观：24种肤色、74款发型、112件上衣、4款裤子、31种配饰，性别外观自由混搭；</li>
+      <li>名字/农场名：支持中文、字母、数字与大部分符号，农场名字创建后无法修改，角色名字可后期更换；</li>
+      <li>宠物偏好：决定第一年春季收到的宠物是猫或狗，各5种外观；</li>
+      <li>最喜欢的物品：食用星之果实会弹出专属文本，填入特定关键词触发彩蛋；</li>
+      <li>性别：仅对话代词、温泉更衣室、生子/收养机制有区分，不限制结婚对象性别。</li>
+    </ul>
+    <img class="create-img content-img" src="./img/denglu.png" alt="创建角色界面">
+
+    <p>输入 <code>ConcernedApe</code> 作为最喜欢的物品时，食用星之果实弹窗：</p>
+    <img class="scroll-img" src="./img/guoshi.png" alt="ConcernedApe彩蛋文本">
+
+    <p>输入 <code>Stardew</code> 作为最喜欢的物品时，食用星之果实弹窗：</p>
+    <img class="scroll-img" src="./img/guoshi1.png" alt="Stardew彩蛋文本">
+
+    <p>好感4星后前往法师塔地下室幻觉神龛，花费500金币可修改全部外观、姓名、性别。</p>
+
+    <h3 id="advanced-set">1.1高级游戏设置</h3>
+    <p>创建角色界面左上角齿轮按钮可调整开局难度设置：</p>
+    <ul>
+      <li>随机矿洞布局、怪物刷新倍率、收益倍率、社区中心/Joja超市路线；</li>
+      <li>开启/关闭怪物、快速开局、跳过开场动画等。</li>
+    </ul>
+
+    <h2 id="farm-map">2 农场地图</h2>
+    <p>开局可选8种农场地形，每种地形侧重不同玩法，地图大小一致，仅地形分布有区别：</p>
+    <table class="wikitable">
+      <tr>
+        <th>农场类型</th>
+        <th>特色</th>
+        <th>适配技能</th>
+      </tr>
+      <tr>
+        <td>标准农场</td>
+        <td>大片平整耕地，均衡通用</td>
+        <td>耕种</td>
+      </tr>
+      <tr>
+        <td>森林农场</td>
+        <td>大量大树、野生采集点、树桩</td>
+        <td>采集</td>
+      </tr>
+      <tr>
+        <td>山顶农场</td>
+        <td>自带露天矿脉，石头多</td>
+        <td>采矿</td>
+      </tr>
+      <tr>
+        <td>河边农场</td>
+        <td>多处池塘，可直接在农场垂钓</td>
+        <td>钓鱼</td>
+      </tr>
+      <tr>
+        <td>荒野农场</td>
+        <td>夜间大量怪物刷新，战斗专属</td>
+        <td>战斗</td>
+      </tr>
+      <tr>
+        <td>四角农场</td>
+        <td>四块独立小耕地，适合多人联机</td>
+        <td>全技能均衡</td>
+      </tr>
+      <tr>
+        <td>海滩农场</td>
+        <td>沙地耕地，可拾取贝壳，不能洒水器</td>
+        <td>钓鱼、采集</td>
+      </tr>
+      <tr>
+        <td>草原农场</td>
+        <td>大量草地，适合饲养动物</td>
+        <td>耕种（畜牧）</td>
+      </tr>
+    </table>
+
+    <h2 id="control">3 控制</h2>
+    <p>游戏所有按键可在设置内自定义，默认基础按键：</p>
+    <table class="wikitable">
+      <tr>
+        <th>按键</th>
+        <th>功能</th>
+      </tr>
+      <tr>
+        <td>W A S D</td>
+        <td>上下左右移动</td>
+      </tr>
+      <tr>
+        <td>C / 鼠标左键</td>
+        <td>使用工具、交互、放置物品</td>
+      </tr>
+      <tr>
+        <td>X / 鼠标右键</td>
+        <td>拾取、对话、打开容器</td>
+      </tr>
+      <tr>
+        <td>ESC / E</td>
+        <td>打开背包菜单</td>
+      </tr>
+      <tr>
+        <td>M</td>
+        <td>大地图</td>
+      </tr>
+      <tr>
+        <td>Y</td>
+        <td>社交面板（好感）</td>
+      </tr>
+      <tr>
+        <td>Tab</td>
+        <td>快捷物品栏切换</td>
+      </tr>
+      <tr>
+        <td>左Shift</td>
+        <td>奔跑</td>
+      </tr>
+      <tr>
+        <td>T</td>
+        <td>任务日志</td>
+      </tr>
+      <tr>
+        <td>F4</td>
+        <td>隐藏界面截图</td>
+      </tr>
+    </table>
+
+    <h2 id="first-harvest">4 第一次收获</h2>
+    <p>第一年春季开局，刘易斯镇长赠送防风草种子，是初始第一笔收入来源。</p>
+    <ul>
+      <li>清理农场杂草、石头、树枝，开垦耕地；</li>
+      <li>播种防风草种子，每日浇水，4天成熟；</li>
+      <li>收获后出售，攒钱升级工具、扩建农场。</li>
+    </ul>
+
+    <h3 id="water">4.1浇水</h3>
+    <p>作物每天需要浇水，雨天自动补水，无需手动操作。</p>
+    <p>铜水壶、铁水壶、金水壶、铱金水壶可一次性浇灌多格农田，后期解锁洒水器完全自动浇水。</p>
+    <p>洒水器分级：基础洒水器4格、优质洒水器8格、铱金洒水器24格。</p>
+
+    <h3 id="tip">4.2提示</h3>
+    <p>草原农场、海滩农场不适合大规模种植，前期优先发展对应特色玩法；温室解锁后全年种植不受季节限制。</p>
+
+    <h2 id="energy">5 体力</h2>
+    <p>挥动工具、砍伐、挖矿、钓鱼都会消耗体力，体力归零无法使用工具，只能缓慢行走。</p>
+    <p>恢复体力途径：食用食物、睡觉回满、温泉泡澡快速恢复；收集星之果实永久提升体力上限。</p>
+    <p>第一年夏季3日解锁温泉，位于木匠商店北边山区，泡澡可快速恢复体力。</p>
+
+    <h2 id="skill">6 技能</h2>
+    <p>游戏五大技能：耕种、采矿、采集、钓鱼、战斗，最高10级，5级、10级解锁职业分支，大幅提升对应玩法收益。</p>
+
+    <h2 id="villager">7 村民与社交</h2>
+    <p>鹈鹕镇全部村民拥有好感系统，每周赠送两次喜欢的礼物提升好感，满10心可结婚。</p>
+    <p>每年固定节日可与村民互动，完成专属任务提升好感，部分剧情需要达到对应好感解锁。</p>
+
+    <h2 id="tv">8 电视</h2>
+    <p>农场电视每日播放4类节目：天气预报、幸运运势、生活小技巧、古董寻宝，获取种植、挖矿、寻宝相关提示。</p>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天气</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Noto Sans SC", Microsoft YaHei, sans-serif;
+  background: url("./img/bg.jpg") no-repeat fixed center / cover;
+  color: #111;
+  line-height: 1.7;
+}
+/* 单栏无侧边布局 */
+.wiki-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 10px;
+}
+.main-content {
+  background: rgba(209, 248, 255, 0.73);
+  border: 1px solid #A7D7F9;
+  border-radius: 6px;
+  padding: 24px 32px;
+}
+/* 顶部按钮组 */
+.page-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.page-btn-group a {
+  padding: 6px 16px;
+  background: rgba(132, 174, 236, 0.4);
+  border: 1px solid #84AEEC;
+  border-radius: 4px;
+  color: #0c3b64;
+  text-decoration: none;
+}
+.page-btn-group a:hover {
+  background: rgba(132, 174, 236, 0.7);
+}
+h1 {
+  font-size: 28px;
+  color: #0f4069;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #a7d7f9;
+  padding-bottom: 8px;
+}
+h2 {
+  font-size: 22px;
+  color: #144b7a;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid #b9dcf8;
+  padding-bottom: 6px;
+}
+h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin: 20px 0 8px;
+}
+p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+ul, ol {
+  margin: 10px 0 10px 26px;
+}
+li {
+  margin: 6px 0;
+}
+/* 维基表格 */
+table.wikitable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background: rgba(255,255,255,0.65);
+}
+table.wikitable th, table.wikitable td {
+  border: 1px solid #84AEEC;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+table.wikitable th {
+  background: rgba(132, 174, 236, 0.4);
+  color: #0a3052;
+}
+/* 天气小图标统一样式 24px行内居中 */
+.weather-icon {
+  width: 24px;
+  vertical-align: middle;
+  margin: 0 6px;
+  border: 2px solid #a7d7f9;
+  border-radius: 4px;
+}
+</style>
+</head>
+<body>
+<div class="wiki-wrap">
+  <main class="main-content">
+    <!-- 跳转按钮：返回主页、季节、节日 -->
+    <div class="page-btn-group">
+      <a href="index.html#content-wrap">返回主页</a>
+      <a href="tb3-1.html">季节</a>
+      <a href="tb3-3.html">节日</a>
+    </div>
+
+    <h1>天气</h1>
+    <p><strong>天气</strong>会根据季节每日发生变化。玩家可以在电视上选择节目“天气预报”查看第二天的天气。</p>
+    <h3>芬群岛天气预报</h3>
+    <p>姜岛上的天气与星露谷不同。解锁姜岛后，电视节目还会单独播报姜岛的天气。</p>
+    <p>天气会影响当天可以钓到的鱼、居民的对话和行程安排（即时间表）。</p>
+
+    <h2 id="type">1 天气种类</h2>
+    <table class="wikitable">
+      <tr>
+        <th>天气</th>
+        <th>描述</th>
+      </tr>
+      <tr>
+        <td><img class="weather-icon" src="./img/qing.png" alt="晴天">晴天</td>
+        <td>明天天气晴朗，风和日丽！全天都会风和日丽，万里无云。</td>
+      </tr>
+      <tr>
+        <td><img class="weather-icon" src="./img/xiayu.png" alt="雨天">雨天</td>
+        <td>明天全天有雨。</td>
+      </tr>
+      <tr>
+        <td><img class="weather-icon" src="./img/chunwei.png" alt="春季微风">微风（春季）</td>
+        <td>部分地区多云，并伴有微风。空气中会有大量花粉！</td>
+      </tr>
+      <tr>
+        <td><img class="weather-icon" src="./img/qiuwei.png" alt="秋季微风">微风（秋季）</td>
+        <td>今天多云，一整天都会狂风大作。<br><strong>注：</strong>翻译有误，应为“明天多云”。</td>
+      </tr>
+      <tr>
+        <td><img class="weather-icon" src="./img/leiyu.png" alt="雷雨">雷雨</td>
+        <td>好像有场风暴正在接近。预计将会有雷电。</td>
+      </tr>
+      <tr>
+        <td><img class="weather-icon" src="./img/lvyu.png" alt="绿雨">绿雨</td>
+        <td>额......读数好像有点......异常......我......我不知道是什么意思......</td>
+      </tr>
+      <tr>
+        <td><img class="weather-icon" src="./img/xue.png" alt="下雪">下雪</td>
+        <td>都多穿点，各位，明天的降雪可能会达到几英尺。</td>
+      </tr>
+      <tr>
+        <td><img class="weather-icon" src="./img/jieri.png" alt="节日">节日</td>
+        <td>明天将是个大晴天……对节日来说将是完美的天气！活动将在指定时段举办。</td>
+      </tr>
+      <tr>
+        <td><img class="weather-icon" src="./img/hunli.png" alt="婚礼">婚礼</td>
+        <td>婚礼当天必定是晴天，界面右上角会显示专属天气图标</td>
+      </tr>
+    </table>
+
+    <h2 id="rate">2 天气概率</h2>
+    <p>鹈鹕镇会根据季节出现多种天气，但姜岛只会出现<img class="weather-icon" src="./img/qing.png">晴天和<img class="weather-icon" src="./img/xiayu.png">雨天。天气覆盖优先级：<img class="weather-icon" src="./img/lvyu.png">绿雨=<img class="weather-icon" src="./img/jieri.png">节日><img class="weather-icon" src="./img/hunli.png">婚礼>固定天气>求雨>自然天气</p>
+    <ul>
+      <li>结婚遇上<img class="weather-icon" src="./img/lvyu.png">绿雨/<img class="weather-icon" src="./img/jieri.png">节日，婚礼自动延后一天</li>
+      <li>固定<img class="weather-icon" src="./img/xiayu.png">雨天、<img class="weather-icon" src="./img/leiyu.png">雷雨可被结婚覆盖为<img class="weather-icon" src="./img/qing.png">晴天</li>
+      <li>雨水图腾无法覆盖固定<img class="weather-icon" src="./img/qing.png">晴天、<img class="weather-icon" src="./img/leiyu.png">雷雨</li>
+      <li>雨水图腾只会把任意自然天气改为普通<img class="weather-icon" src="./img/xiayu.png">雨天</li>
+    </ul>
+
+    <h3 id="fixed">2.1 固定天气</h3>
+    <p>所有<img class="weather-icon" src="./img/jieri.png">节日当天强制<img class="weather-icon" src="./img/qing.png">晴天；每年夏季随机一天为<img class="weather-icon" src="./img/lvyu.png">绿雨天；每个季节第一天必晴。</p>
+    <h4>持续多日节日</h4>
+    <ul>
+      <li>沙漠节：春15-17</li>
+      <li>鳟鱼大赛：夏20-21</li>
+      <li>鱿鱼节：冬12-13</li>
+      <li>夜市：冬15-17</li>
+    </ul>
+    <h4>单日节日</h4>
+    <ul>
+      <li>复活节春13、花舞节春24、夏威夷宴会夏11、月光水母夏28</li>
+      <li>星露谷展览会秋16、万灵节秋27、冰雪节冬8、冬日星盛宴冬25</li>
+    </ul>
+    <p>第一年春1/2/5<img class="weather-icon" src="./img/qing.png">晴天、春3<img class="weather-icon" src="./img/xiayu.png">雨天；夏13、26固定<img class="weather-icon" src="./img/leiyu.png">雷雨；玩家结婚当日必<img class="weather-icon" src="./img/qing.png">晴；首次登姜岛必晴。</p>
+
+    <h3 id="natural">2.2 自然天气</h3>
+    <ul>
+      <li>春/秋：非固定日18.3%<img class="weather-icon" src="./img/xiayu.png">下雨</li>
+      <li>夏季雨天概率随天数递增，雨天85%变<img class="weather-icon" src="./img/leiyu.png">雷雨</li>
+      <li>冬季63%<img class="weather-icon" src="./img/xue.png">下雪，无自然雨天，仅图腾可下雨</li>
+      <li>春季<img class="weather-icon" src="./img/chunwei.png">微风20%，秋季<img class="weather-icon" src="./img/qiuwei.png">微风6%</li>
+      <li>姜岛非首日24%降雨</li>
+    </ul>
+    <p>广义雨天：<img class="weather-icon" src="./img/leiyu.png">雷雨、<img class="weather-icon" src="./img/lvyu.png">绿雨、雨水图腾雨天；广义晴天：<img class="weather-icon" src="./img/xue.png">下雪、<img class="weather-icon" src="./img/chunwei.png"><img class="weather-icon" src="./img/qiuwei.png">微风、节日、婚礼。</p>
+
+    <h3 id="water">2.3 自然灌溉天数</h3>
+    <p>第二年年均15.732个降雨天；仅靠雨水灌溉，全年需要大量松露制作雨水图腾，文中给出对应猪数量参考。</p>
+
+    <h2 id="note">3 注释</h2>
+    <h3>3.1 <img class="weather-icon" src="./img/leiyu.png">雷雨</h3>
+    <p>雷雨属于雨天，会刷特殊鱼类与老水手；全天随机落雷，雷击损毁作物、果树、采集器，避雷针可吸收雷电产出电池组。雨水图腾不能把固定雷雨改为雷雨，只能变普通<img class="weather-icon" src="./img/xiayu.png">雨天。</p>
+    <h3>3.2 <img class="weather-icon" src="./img/xue.png">下雪</h3>
+    <p>下雪天冬季作物仍需浇水；设置内可调整雪透明度。</p>
+    <h3>3.3 <img class="weather-icon" src="./img/lvyu.png">绿雨</h3>
+    <p>仅夏季随机单日触发，画面绿色滤镜，山谷大量杂草与树木变异；第一年村民大多居家，无法送礼；婚礼遇绿自动延期，电视只会雪花屏。</p>
+    <h3>3.4 其他</h3>
+    <p>冬季无自然降雨；<img class="weather-icon" src="./img/xue.png">下雪、<img class="weather-icon" src="./img/chunwei.png"><img class="weather-icon" src="./img/qiuwei.png">微风算作晴天可触发户外爱心事件，<img class="weather-icon" src="./img/leiyu.png">雷雨算作雨天。</p>
+
+    <h2 id="bug">4 漏洞</h2>
+    <ul>
+      <li>春2、夏13天气预报存在错误</li>
+      <li>夏26固定<img class="weather-icon" src="./img/leiyu.png">雷雨，前一天不看电视可能不触发</li>
+    </ul>
+
+    <h2 id="egg">5 彩蛋</h2>
+    <p>春秋微风天使用锤特技，花瓣/落叶会反向漂浮。</p>
+
+    <h2 id="know">6 你知道吗</h2>
+    <ul>
+      <li>秋季刮风天秘密森林落叶依旧红色</li>
+      <li>冬天不会自然刮风，但天气预报有隐藏文案</li>
+      <li>第一年春3<img class="weather-icon" src="./img/xiayu.png">雨天可被结婚覆盖，但无法实现当天结婚</li>
+      <li><img class="weather-icon" src="./img/lvyu.png">绿雨不是酸雨，法师对话可佐证</li>
+    </ul>
+
+    <h2 id="history">7 历史</h2>
+    <ul>
+      <li>1.5：新增姜岛天气预报</li>
+      <li>1.6：新增<img class="weather-icon" src="./img/lvyu.png">绿雨，修复雨水图腾覆盖雷雨bug</li>
+      <li>1.6.4：第一年绿雨期间无法送礼</li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

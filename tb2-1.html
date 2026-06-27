@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>农作物</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Noto Sans SC", Microsoft YaHei, sans-serif;
+  background: url("./img/bg.jpg") no-repeat fixed center / cover;
+  color: #111;
+  line-height: 1.7;
+}
+/* 页面双栏布局容器 */
+.wiki-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 16px;
+  padding: 20px 10px;
+}
+/* 左侧悬浮侧边目录 */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: rgba(209, 248, 255, 0.78);
+  border: 1px solid #84AEEC;
+  border-radius: 6px;
+  padding: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+.sidebar h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #a7d7f9;
+  padding-bottom: 6px;
+}
+.sidebar ul {
+  list-style: none;
+}
+.sidebar li {
+  margin: 6px 0;
+}
+.sidebar li a {
+  color: #0c3b64;
+  text-decoration: none;
+  font-size: 14px;
+}
+.sidebar li a:hover {
+  color: #2278bb;
+  text-decoration: underline;
+}
+/* 右侧正文区域 */
+.main-content {
+  flex: 1;
+  background: rgba(209, 248, 255, 0.73);
+  border: 1px solid #A7D7F9;
+  border-radius: 6px;
+  padding: 24px 32px;
+}
+/* 页面跳转按钮组 */
+.page-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.page-btn-group a {
+  padding: 6px 16px;
+  background: rgba(132, 174, 236, 0.4);
+  border: 1px solid #84AEEC;
+  border-radius: 4px;
+  color: #0c3b64;
+  text-decoration: none;
+}
+.page-btn-group a:hover {
+  background: rgba(132, 174, 236, 0.7);
+}
+h1 {
+  font-size: 28px;
+  color: #0f4069;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #a7d7f9;
+  padding-bottom: 8px;
+}
+h2 {
+  font-size: 22px;
+  color: #144b7a;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid #b9dcf8;
+  padding-bottom: 6px;
+}
+h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin: 20px 0 8px;
+}
+p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+ul, ol {
+  margin: 10px 0 10px 26px;
+}
+li {
+  margin: 6px 0;
+}
+/* 维基表格 */
+table.wikitable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background: rgba(255,255,255,0.65);
+}
+table.wikitable th, table.wikitable td {
+  border: 1px solid #84AEEC;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+table.wikitable th {
+  background: rgba(132, 174, 236, 0.4);
+  color: #0a3052;
+}
+/* 作物图片样式 */
+.content-img {
+  max-width: 24px;
+  vertical-align: middle;
+  margin: 0 6px;
+  border: 2px solid #a7d7f9;
+  border-radius: 4px;
+}
+.img-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 0;
+}
+.big-img {
+  max-width: 180px;
+  margin: 12px 8px;
+  border: 2px solid #a7d7f9;
+  border-radius: 4px;
+}
+</style>
+</head>
+<body>
+<div class="wiki-wrap">
+  <!-- 左侧侧边导航目录 -->
+  <aside class="sidebar">
+    <h3>目录</h3>
+    <ul>
+      <li><a href="#base">1 基本信息</a></li>
+      <li><a href="#plant">1.1 种植</a></li>
+      <li><a href="#plant-tip">1.1.1 提示</a></li>
+      <li><a href="#sort">1.2 作物分类</a></li>
+      <li><a href="#soil">1.3 土壤加成</a></li>
+      <li><a href="#outer">1.4 外部影响</a></li>
+      <li><a href="#grow">1.5 生长时间</a></li>
+      <li><a href="#giant">1.6 巨大作物</a></li>
+      <li><a href="#quality">1.7 作物品质</a></li>
+      <li><a href="#count">1.8 作物数量</a></li>
+      <li><a href="#profit">1.9 每日收益</a></li>
+      <li><a href="#normal">2 常规作物</a></li>
+      <li><a href="#spring">2.1 春季作物</a></li>
+      <li><a href="#summer">2.2 夏季作物</a></li>
+      <li><a href="#autumn">2.3 秋季作物</a></li>
+      <li><a href="#winter">2.4 冬季作物</a></li>
+      <li><a href="#special">3 特殊作物</a></li>
+      <li><a href="#artisan">4 工匠物品</a></li>
+      <li><a href="#achievement">5 成就</a></li>
+      <li><a href="#tips">6 提示</a></li>
+      <li><a href="#ref">7 参考</a></li>
+      <li><a href="#history">8 历史</a></li>
+    </ul>
+  </aside>
+
+  <!-- 右侧正文主体 -->
+  <main class="main-content">
+    <!-- 页面顶部跳转导航：返回主页 + 切换图鉴成就 -->
+    <div class="page-btn-group">
+      <a href="index.html#content-wrap">返回主页</a>
+      <a href="tb2-2.html">图鉴成就</a>
+    </div>
+
+    <h1>农作物</h1>
+    <p>本条目介绍的是在耕地里生长的植物。关于在树上生长的水果，请见 <strong>果树</strong>；关于各类作物利润的计算，请见 <strong>作物利润计算</strong>。</p>
+    <p><strong>农作物</strong> 是以获利、进食或赠送为目的而从种子培育而成的植物。</p>
+
+    <h2 id="base">1 基本信息</h2>
+    <h3 id="plant">1.1 种植</h3>
+    <p>在农场的土地或沙地上可以使用锄头开垦出耕地，可以使用喷壶灌溉耕地，这两个行为都会消耗玩家的体力。</p>
+    <p>当季存活的种子可以直接播种到开垦的耕地上。每一格耕地同一时间只能种植一个作物。</p>
+    <p>过夜时若土地是湿润的（手动浇水、洒水器、雨天、保湿土壤均可），则该格作物会正常生长一次。土地干燥则作物当天不会生长；重复收获类作物也会推迟产出。</p>
+
+    <h4 id="plant-tip">1.1.1 提示</h4>
+    <ul>
+      <li>炸弹可炸开耕地，但会摧毁范围内洒水器、种子、地板等所有物品；</li>
+      <li>除上古水果外，大部分作物可种植在花盆内；</li>
+      <li>洒水器无法作用海滩沙地，下雨自动浇灌室外耕地与花盆；</li>
+    </ul>
+
+    <h3 id="sort">1.2 作物分类</h3>
+    <p>除特殊跨季品种外，作物仅能在对应季节生长，分为多类特性作物，一种作物可同时属于多个分类：</p>
+    <ul>
+      <li><strong>跨季作物</strong>：咖啡豆（春夏）、玉米/向日葵/小麦（夏秋）、上古水果（非冬季）、纤维/齐瓜/茶叶（全季）、仙人掌果子（仅限室内/温室）</li>
+      <li><strong>棚架作物</strong>：青豆、啤酒花、葡萄，植株会阻挡行走，枯萎后棚架消失</li>
+      <li><strong>邻水免浇作物</strong>：未碾米、芋头、纤维、茶叶，靠近水源加速生长且自动保湿</li>
+      <li><strong>镰刀收割作物</strong>：甘蓝、未碾米、小麦、纤维</li>
+      <li><strong>多产作物</strong>：土豆、草莓、咖啡豆、蓝莓等，单次收获多份产物，仅第一件有品质</li>
+      <li><strong>多次收获作物</strong>：成熟后周期性持续产出，如草莓、蓝莓、蔓越莓、上古水果等</li>
+    </ul>
+
+    <h3 id="soil">1.3 土壤加成</h3>
+    <p>耕地可施加肥料、生长激素、保湿土壤，同一地块只能存在一种加成：</p>
+    <ul>
+      <li>肥料：提升高品质作物产出概率；</li>
+      <li>激素：缩短全部生长周期天数；</li>
+      <li>保湿土壤：夜晚自动维持土地湿润；</li>
+      <li>初级/高级肥料仅能在播种前使用。</li>
+    </ul>
+
+    <h3 id="outer">1.4 外部影响</h3>
+    <ul>
+      <li>未放稻草人时，超过15株作物会被乌鸦破坏；</li>
+      <li>无避雷针时雷雨闪电会直接烧焦作物；</li>
+      <li>季节更替会杀死非跨季室外作物；</li>
+      <li>室内、温室、姜岛农场作物不受季节、乌鸦、闪电影响。</li>
+    </ul>
+
+    <h3 id="grow">1.5 生长时间</h3>
+    <p>生长天数仅统计各阶段过夜次数，成熟当天可收获并立刻重播。缺水会暂停生长，农业学家职业+生长激素效果可叠加缩短周期。</p>
+
+    <h3 id="giant">1.6 巨大作物</h3>
+    <p>花椰菜、甜瓜、南瓜、霜瓜、齐瓜满足3×3整块同种湿润成熟作物时，每日1%概率生成巨大作物，斧头击碎产出15~21个普通产物；温室、花盆、姜岛无法生成巨大作物。收获巨大作物必定触发秘密纸条判定。</p>
+    <table class="wikitable">
+      <tr>
+        <th colspan="5">可生成巨大作物列表</th>
+      </tr>
+      <tr>
+        <td>花椰菜</td>
+        <td>甜瓜</td>
+        <td>南瓜</td>
+        <td>霜瓜</td>
+        <td>齐瓜</td>
+      </tr>
+    </table>
+    <div class="img-row">
+      <img class="big-img" src="./img/dahuacai.png" alt="巨大花椰菜">
+      <img class="big-img" src="./img/datiangua.png" alt="巨大甜瓜">
+      <img class="big-img" src="./img/danangua.png" alt="巨大南瓜">
+      <img class="big-img" src="./img/dashuanggua.png" alt="巨大霜瓜">
+      <img class="big-img" src="./img/qigua.png" alt="巨大齐瓜">
+    </div>
+    <h3 id="quality">1.7 作物品质</h3>
+    <p>品质分级：普通 < 银星 < 金星 < 铱星；仅顶级肥料产出铱星品质。耕种等级、肥料提升高品质概率；高品质售价、送礼好感、恢复体力更高，但加工后不提升成品品质。多产作物仅第一个产出带有品质。纤维、齐瓜永远普通品质。</p>
+
+    <h3 id="count">1.8 作物数量</h3>
+    <p>收获数量计算逻辑：基础区间随机值 + 额外概率追加；幸运值可双倍产出，但多份掉落物全部无品质。向日葵为特殊计算规则。</p>
+    <table class="wikitable">
+      <tr>
+        <th>作物</th>
+        <th>额外产出几率</th>
+        <th>单株额外期望</th>
+      </tr>
+      <tr>
+        <td>土豆</td>
+        <td>20%</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>稻苗、蔓越莓</td>
+        <td>10%</td>
+        <td>0.1111</td>
+      </tr>
+      <tr>
+        <td>西红柿</td>
+        <td>5%</td>
+        <td>0.0526</td>
+      </tr>
+      <tr>
+        <td>辣椒</td>
+        <td>3%</td>
+        <td>0.0309</td>
+      </tr>
+      <tr>
+        <td>草莓/咖啡豆/蓝莓</td>
+        <td>2%</td>
+        <td>0.0204</td>
+      </tr>
+      <tr>
+        <td>纤维</td>
+        <td>1%</td>
+        <td>0.0101</td>
+      </tr>
+      <tr>
+        <td>茄子</td>
+        <td>0.2%</td>
+        <td>0.0020</td>
+      </tr>
+    </table>
+
+    <h3 id="profit">1.9 每日收益</h3>
+    <p>计算公式：每日最小收益 =（单次总售价 - 种子成本）÷完整生长周期；不计肥料、职业加成，土豆、蓝莓、蔓越莓等多产作物单独计算平均产出价值。</p>
+
+    <h2 id="normal">2 常规作物</h2>
+    <h3 id="spring">2.1 春季作物</h3>
+    <p>
+      <img class="content-img" src="./img/lanjue.png" alt="蓝爵">蓝爵、
+      <img class="content-img" src="./img/huluobo.png" alt="胡萝卜">胡萝卜、
+      <img class="content-img" src="./img/huayecai.png" alt="花椰菜">花椰菜、
+      <img class="content-img" src="./img/kafeidou.png" alt="咖啡豆">咖啡豆、
+      <img class="content-img" src="./img/suan.png" alt="蒜">蒜、
+      <img class="content-img" src="./img/dou.png" alt="青豆">青豆、
+      <img class="content-img" src="./img/ganlancai.png" alt="甘蓝菜">甘蓝菜、
+      <img class="content-img" src="./img/fangfeng.png" alt="防风草">防风草、
+      <img class="content-img" src="./img/tudou.png" alt="土豆">土豆、
+      <img class="content-img" src="./img/dahuang.png" alt="大黄">大黄、
+      <img class="content-img" src="./img/caomei.png" alt="草莓">草莓、
+      <img class="content-img" src="./img/yujinxiang.png" alt="郁金香">郁金香、
+      <img class="content-img" src="./img/mi.png" alt="未碾米">未碾米、
+      <img class="content-img" src="./img/lanmei.png" alt="蓝莓">蓝莓
+    </p>
+
+    <h3 id="summer">2.2 夏季作物</h3>
+    <p>
+      <img class="content-img" src="./img/lanmei.png" alt="蓝莓">蓝莓、
+      <img class="content-img" src="./img/yumi.png" alt="玉米">玉米、
+      <img class="content-img" src="./img/pijiuhua.png" alt="啤酒花">啤酒花、
+      <img class="content-img" src="./img/lajiao.png" alt="辣椒">辣椒、
+      <img class="content-img" src="./img/tiangua.png" alt="甜瓜">甜瓜、
+      <img class="content-img" src="./img/yumeiren.png" alt="虞美人花">虞美人花、
+      <img class="content-img" src="./img/luobo.png" alt="萝卜">萝卜、
+      <img class="content-img" src="./img/juanxincai.png" alt="红叶卷心菜">红叶卷心菜、
+      <img class="content-img" src="./img/yangtao.png" alt="杨桃">杨桃、
+      <img class="content-img" src="./img/liangpian.png" alt="夏季亮片">夏季亮片、
+      <img class="content-img" src="./img/jinxihulu.png" alt="金皮西葫芦">金皮西葫芦、
+      <img class="content-img" src="./img/xiangrikui.png" alt="向日葵">向日葵、
+      <img class="content-img" src="./img/xihongshi.png" alt="西红柿">西红柿、
+      <img class="content-img" src="./img/xiaomai.png" alt="小麦">小麦、
+      <img class="content-img" src="./img/boluo.png" alt="菠萝">菠萝、
+      <img class="content-img" src="./img/xiancai.png" alt="苋菜">苋菜、
+      <img class="content-img" src="./img/yangji.png" alt="洋蓟">洋蓟、
+      <img class="content-img" src="./img/tiancai.png" alt="甜菜">甜菜、
+      <img class="content-img" src="./img/baicai.png" alt="小白菜">小白菜、
+      <img class="content-img" src="./img/xilanhua.png" alt="西蓝花">西蓝花、
+      <img class="content-img" src="./img/manyuemei.png" alt="蔓越莓">蔓越莓
+    </p>
+
+    <h3 id="autumn">2.3 秋季作物</h3>
+    <p>
+      <img class="content-img" src="./img/xiancai.png" alt="苋菜">苋菜、
+      <img class="content-img" src="./img/yangji.png" alt="洋蓟">洋蓟、
+      <img class="content-img" src="./img/tiancai.png" alt="甜菜">甜菜、
+      <img class="content-img" src="./img/baicai.png" alt="小白菜">小白菜、
+      <img class="content-img" src="./img/xilanhua.png" alt="西蓝花">西蓝花、
+      <img class="content-img" src="./img/manyuemei.png" alt="蔓越莓">蔓越莓、
+      <img class="content-img" src="./img/qiezi.png" alt="茄子">茄子、
+      <img class="content-img" src="./img/meigui.png" alt="玫瑰仙子">玫瑰仙子、
+      <img class="content-img" src="./img/putao.png" alt="葡萄">葡萄、
+      <img class="content-img" src="./img/nangua.png" alt="南瓜">南瓜、
+      <img class="content-img" src="./img/shanyao.png" alt="山药">山药
+    </p>
+
+    <h3 id="winter">2.4 冬季作物</h3>
+    <p><img class="content-img" src="./img/shuanggua.png" alt="霜瓜">霜瓜（温室/姜岛可冬季种植）</p>
+
+    <h2 id="special">3 特殊作物</h2>
+    <p>
+      <img class="content-img" src="./img/hunhezhong.png" alt="混合种子">混合种子、
+      <img class="content-img" src="./img/hunhehua.png" alt="混合花卉种子">混合花卉种子、
+      <img class="content-img" src="./img/baoshimei.png" alt="宝石甜莓">宝石甜莓、
+      <img class="content-img" src="./img/shanggushuiguo.png" alt="上古水果">上古水果、
+      <img class="content-img" src="./img/xianrenzhang.png" alt="仙人掌果子">仙人掌果子、
+      <img class="content-img" src="./img/xianwei.png" alt="纤维">纤维、
+      <img class="content-img" src="./img/chaye.png" alt="茶叶">茶叶、
+      <img class="content-img" src="./img/boluo.png" alt="菠萝">菠萝、
+      <img class="content-img" src="./img/yutou.png" alt="芋头">芋头、
+      <img class="content-img" src="./img/qigua.png" alt="齐瓜">齐瓜
+    </p>
+
+    <h2 id="artisan">4 工匠物品</h2>
+    <p>大部分农作物可放入小桶、罐头瓶加工：蔬菜制腌菜/果汁，小麦酿啤酒，啤酒花酿淡啤酒，茶叶制绿茶，加工后售价大幅提升，受酿酒师职业加成。</p>
+
+    <h2 id="achievement">5 成就</h2>
+    <ul>
+      <li>全部作物收集：集齐所有季节性常规作物；</li>
+      <li>大规模种植：单次收获大量成熟作物；</li>
+      <li>巨大作物：培育任意巨型农作物。
+    </ul>
+
+    <h2 id="tips">6 提示</h2>
+    <p>1. 重复收获类作物长期收益远高于单季一次性作物；</p>
+    <p>2. 海滩农场优先芋头、纤维等免浇水品种；</p>
+    <p>3. 大面积规整农田更容易刷出巨大作物；</p>
+    <p>4. 耕种10级农场主职业直接提升全部农产品售价25%。</p>
+
+    <h2 id="ref">7 参考</h2>
+    <p>星露谷物语官方游戏数据、B站星露谷物语维基作物板块</p>
+
+    <h2 id="history">8 历史</h2>
+    <ul>
+      <li>1.4版本新增茶叶、菠萝、金皮西葫芦；</li>
+      <li>1.5开放姜岛专属作物仙人掌、芋头；</li>
+      <li>1.6优化巨大作物生成判定与掉落奖励。</li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

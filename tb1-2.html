@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技能</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Noto Sans SC", Microsoft YaHei, sans-serif;
+  background: url("./img/bg.jpg") no-repeat fixed center / cover;
+  color: #111;
+  line-height: 1.7;
+}
+/* 页面总容器：侧边栏+正文双栏 */
+.wiki-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 16px;
+  padding: 20px 10px;
+}
+/* 左侧侧边目录栏 */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: rgba(209, 248, 255, 0.78);
+  border: 1px solid #84AEEC;
+  border-radius: 6px;
+  padding: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+.sidebar h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #a7d7f9;
+  padding-bottom: 6px;
+}
+.sidebar ul {
+  list-style: none;
+}
+.sidebar li {
+  margin: 6px 0;
+}
+.sidebar li a {
+  color: #0c3b64;
+  text-decoration: none;
+  font-size: 14px;
+}
+.sidebar li a:hover {
+  color: #2278bb;
+  text-decoration: underline;
+}
+/* 右侧正文主体 */
+.main-content {
+  flex: 1;
+  background: rgba(209, 248, 255, 0.73);
+  border: 1px solid #A7D7F9;
+  border-radius: 6px;
+  padding: 24px 32px;
+}
+/* 页面跳转按钮组 */
+.page-btn-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.page-btn-group a {
+  padding: 6px 16px;
+  background: rgba(132, 174, 236, 0.4);
+  border: 1px solid #84AEEC;
+  border-radius: 4px;
+  color: #0c3b64;
+  text-decoration: none;
+}
+.page-btn-group a:hover {
+  background: rgba(132, 174, 236, 0.7);
+}
+h1 {
+  font-size: 28px;
+  color: #0f4069;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #a7d7f9;
+  padding-bottom: 8px;
+}
+h2 {
+  font-size: 22px;
+  color: #144b7a;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid #b9dcf8;
+  padding-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin: 20px 0 8px;
+}
+p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+ul, ol {
+  margin: 10px 0 10px 26px;
+}
+li {
+  margin: 6px 0;
+}
+/* wiki表格样式 */
+table.wikitable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background: rgba(255,255,255,0.65);
+}
+table.wikitable th, table.wikitable td {
+  border: 1px solid #84AEEC;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+table.wikitable th {
+  background: rgba(132, 174, 236, 0.4);
+  color: #0a3052;
+}
+/* 技能小图标样式 */
+.skill-icon {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #a7d7f9;
+  border-radius: 4px;
+}
+</style>
+</head>
+<body>
+<div class="wiki-wrap">
+  <!-- 左侧侧边目录 -->
+  <aside class="sidebar">
+    <h3>目录</h3>
+    <ul>
+      <li><a href="#overview">1 总览</a></li>
+      <li><a href="#farming">2 耕种</a></li>
+      <li><a href="#mining">3 采矿</a></li>
+      <li><a href="#foraging">4 采集</a></li>
+      <li><a href="#fishing">5 钓鱼</a></li>
+      <li><a href="#combat">6 战斗</a></li>
+      <li><a href="#exp">7 经验升级表</a></li>
+    </ul>
+  </aside>
+
+  <!-- 右侧正文区域 -->
+  <main class="main-content">
+    <!-- 页面跳转按钮 -->
+    <div class="page-btn-group">
+      <a href="tb1.html">新手指南页面</a>
+      <a href="tb1-1.html">玩家角色页面</a>
+    </div>
+
+    <h1>技能</h1>
+    <h2 id="overview">总览</h2>
+    <p>技能是星露谷物语的成长系统，游戏共有五种独立技能：耕种、采矿、采集、钓鱼、战斗，每种技能最高等级为10级。通过完成对应行为获取经验值，等级达到5级、10级时可选择专属职业分支，永久获得对应加成。</p>
+    <p>五种技能对应图标一览：</p>
+    <ul>
+      <li><img class="skill-icon" src="./img/ji.png" alt="耕种图标"> 耕种</li>
+      <li><img class="skill-icon" src="./img/zhong.png" alt="采矿图标"> 采矿</li>
+      <li><img class="skill-icon" src="./img/cai.png" alt="采集图标"> 采集</li>
+      <li><img class="skill-icon" src="./img/yu.png" alt="钓鱼图标"> 钓鱼</li>
+      <li><img class="skill-icon" src="./img/zhan.png" alt="战斗图标"> 战斗</li>
+    </ul>
+
+    <h2 id="farming">2 耕种 <img class="skill-icon" src="./img/ji.png" alt="耕种图标"></h2>
+    <p>耕种经验来源于收获农作物、照料家禽家畜、挤奶、剪羊毛。提升耕种等级会解锁洒水器、优质肥料、蜂房等制作配方。</p>
+    <h3>5级职业二选一</h3>
+    <ul>
+      <li>农场主：所有农产品售价提升25%</li>
+      <li>培育师：温室、花盆内作物永不枯萎</li>
+    </ul>
+    <h3>10级进阶分支</h3>
+    <p>农场主路线：酿酒师（果酒、奶酪售价+40%） / 油商（油料售价+50%）</p>
+    <p>培育师路线：园艺师（所有作物必定金星品质） / 农耕大师（浇水范围扩大，自动收割）</p>
+
+    <h2 id="mining">3 采矿 <img class="skill-icon" src="./img/zhong.png" alt="采矿图标"></h2>
+    <p>采矿经验通过敲碎石头、开采矿洞矿石、开启晶洞获得。升级解锁熔炉、炸弹、梯子等道具配方，提升镐子效率。</p>
+    <h3>5级职业二选一</h3>
+    <ul>
+      <li>矿工：每块矿石额外产出1个矿物</li>
+      <li>地质学家：晶洞一次开出两份物品</li>
+    </ul>
+    <h3>10级进阶分支</h3>
+    <p>矿工路线：铁匠（金属条售价+50%） / 勘探者（双倍煤炭掉落）</p>
+    <p>地质学家路线：挖掘者（双倍晶石掉落） / 宝石学家（宝石售价+30%）</p>
+
+    <h2 id="foraging">4 采集 <img class="skill-icon" src="./img/cai.png" alt="采集图标"></h2>
+    <p>采集经验来自砍伐树木、拾取野外野生物产、采集海滩贝壳。升级解锁树液采集器、野种子配方，斧头砍伐效率提升。</p>
+    <h3>5级职业二选一</h3>
+    <ul>
+      <li>伐木工：所有木材产出翻倍</li>
+      <li>植物学家：野外拾取物品全部金星品质</li>
+    </ul>
+    <h3>10级进阶分支</h3>
+    <p>伐木工路线：樵夫（硬木大量掉落） / 塔匠（木材制作家具半价）</p>
+    <p>植物学家路线：追踪者（显示野外采集物位置） / 植物园学家（双倍野外物产刷新）</p>
+
+    <h2 id="fishing">5 钓鱼 <img class="skill-icon" src="./img/yu.png" alt="钓鱼图标"></h2>
+    <p>垂钓、收获蟹笼均可获得钓鱼经验，等级越高钓鱼条越长、更容易上钩，解锁鱼饵、磁铁、蟹笼配方。</p>
+    <h3>5级职业二选一</h3>
+    <ul>
+      <li>渔夫：鱼类售价提升25%</li>
+      <li>陷阱大师：蟹笼无需消耗鱼饵</li>
+    </ul>
+    <h3>10级进阶分支</h3>
+    <p>渔夫路线：海盗（双倍宝藏掉落） / 垂钓大师（上钩速度大幅提升）</p>
+    <p>陷阱大师路线：水手（蟹笼不会产生垃圾） / 打捞者（蟹笼产出翻倍）</p>
+
+    <h2 id="combat">6 战斗 <img class="skill-icon" src="./img/zhan.png" alt="战斗图标"></h2>
+    <p>击杀矿洞、地牢怪物获得战斗经验，每级永久提升生命值，解锁各类武器、爆炸弹配方。</p>
+    <h3>5级职业二选一</h3>
+    <ul>
+      <li>战士：近战武器伤害+10%</li>
+      <li>侦察兵：暴击概率翻倍</li>
+    </ul>
+    <h3>10级进阶分支</h3>
+    <p>战士路线：狂暴战士（暴击伤害+25%） / 防御者（防御值翻倍）</p>
+    <p>侦察兵路线：刺客（潜行暴击秒杀小怪） / 急速射击（武器冷却大幅缩短）</p>
+
+    <h2 id="exp">7 经验升级表</h2>
+    <table class="wikitable">
+      <tr>
+        <th>技能等级</th>
+        <th>累计所需总经验</th>
+        <th>阶段奖励</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>0</td>
+        <td>基础属性解锁</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>100</td>
+        <td>新制作配方</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>380</td>
+        <td>新制作配方</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>770</td>
+        <td>新制作配方</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>1300</td>
+        <td>5级职业二选一</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>2150</td>
+        <td>新制作配方</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>3300</td>
+        <td>新制作配方</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>4800</td>
+        <td>新制作配方</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>6700</td>
+        <td>新制作配方</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>10000</td>
+        <td>10级进阶职业</td>
+      </tr>
+    </table>
+    <p>技能达到10级后，该技能不再获取经验；食用星之果实仅提升最大体力上限，和技能等级无关联。</p>
+  </main>
+</div>
+</body>
+</html>

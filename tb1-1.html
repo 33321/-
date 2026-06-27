@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>玩家角色</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Noto Sans SC", Microsoft YaHei, sans-serif;
+  background: url("./img/bg.jpg") no-repeat fixed center / cover;
+  color: #111;
+  line-height: 1.7;
+}
+/* 页面总容器：侧边栏+正文双栏 */
+.wiki-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 16px;
+  padding: 20px 10px;
+}
+/* 左侧侧边目录栏 */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: rgba(209, 248, 255, 0.78);
+  border: 1px solid #84AEEC;
+  border-radius: 6px;
+  padding: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+.sidebar h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #a7d7f9;
+  padding-bottom: 6px;
+}
+.sidebar ul {
+  list-style: none;
+}
+.sidebar li {
+  margin: 6px 0;
+}
+.sidebar li a {
+  color: #0c3b64;
+  text-decoration: none;
+  font-size: 14px;
+}
+.sidebar li a:hover {
+  color: #2278bb;
+  text-decoration: underline;
+}
+/* 右侧正文主体 */
+.main-content {
+  flex: 1;
+  background: rgba(209, 248, 255, 0.73);
+  border: 1px solid #A7D7F9;
+  border-radius: 6px;
+  padding: 24px 32px;
+}
+/* 页面跳转按钮组 */
+.page-btn-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.page-btn-group a {
+  padding: 6px 16px;
+  background: rgba(132, 174, 236, 0.4);
+  border: 1px solid #84AEEC;
+  border-radius: 4px;
+  color: #0c3b64;
+  text-decoration: none;
+}
+.page-btn-group a:hover {
+  background: rgba(132, 174, 236, 0.7);
+}
+h1 {
+  font-size: 28px;
+  color: #0f4069;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #a7d7f9;
+  padding-bottom: 8px;
+}
+h2 {
+  font-size: 22px;
+  color: #144b7a;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid #b9dcf8;
+  padding-bottom: 6px;
+}
+h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin: 20px 10px 8px;
+}
+p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+ul, ol {
+  margin: 10px 0 10px 26px;
+}
+li {
+  margin: 6px 0;
+}
+/* wiki表格样式 */
+table.wikitable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background: rgba(255,255,255,0.65);
+}
+table.wikitable th, table.wikitable td {
+  border: 1px solid #84AEEC;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+table.wikitable th {
+  background: rgba(132, 174, 236, 0.4);
+  color: #0a3052;
+}
+/* 常规界面截图 */
+.content-img {
+  max-width: 420px;
+  margin: 12px 0;
+  border: 2px solid #a7d7f9;
+  border-radius: 4px;
+}
+/* 长卷轴文本图，宽度自适应 */
+.scroll-img {
+  max-width: 100%;
+  margin: 10px 0;
+}
+</style>
+</head>
+<body>
+<div class="wiki-wrap">
+  <!-- 左侧侧边目录 -->
+  <aside class="sidebar">
+    <h3>目录</h3>
+    <ul>
+      <li><a href="#create">1 创建角色</a></li>
+      <li><a href="#char">2 特殊字符</a></li>
+      <li><a href="#note">3 注释</a></li>
+      <li><a href="#bug">4 漏洞</a></li>
+      <li><a href="#see">5 另见</a></li>
+      <li><a href="#history">6 历史</a></li>
+    </ul>
+  </aside>
+
+  <!-- 右侧正文区域 -->
+  <main class="main-content">
+    <!-- 页面跳转按钮 -->
+    <div class="page-btn-group">
+      <a href="tb1.html">新手指南页面</a>
+      <a href="tb1-2.html">技能页面</a>
+    </div>
+
+    <h1>玩家角色</h1>
+    <p><strong>玩家</strong> 泛指在星露谷物语中操作的角色。</p>
+
+    <h2 id="create">创建角色</h2>
+    <!-- 创建角色界面 denglu.png -->
+    <img class="content-img" src="./img/denglu.png" alt="创建角色的界面">
+    <p>创建角色的界面</p>
+    <p>在一开始创建新游戏时以下选项是需要选择的：</p>
+    <ul>
+      <li>
+        <strong>外貌</strong> - 包括 24 种肤色、74 种发型、112 种上衣、4 种裤子和 31 种配饰。任何性别都可以使用，支持随机外貌的选择。这个并不影响游戏，以后可以更改，并且还有帽子和鞋类。
+      </li>
+      <li>
+        <strong>名字/农场名字</strong> - 这些仅限大部分 ASCII 可打印字符，包括空格、大小写字母、数字和`` `~!@#$%^&*()-=+[{]}\|;:'",<.>/?_``字符。（但`"`不能使用。1.2 测试版起可以使用中文。）名字和农场名字有时会使用在对话中。玩家的名字以后可以更改，但农场的名字不能更改。
+        <ul>
+          <li>两个字段都接受复制的文本（使用Ctrl + v粘贴文本）。</li>
+          <li>名字的长度取决于其像素长度，并且允许的最大限度为文本框的长度。</li>
+          <li>输入名字时不会改变字母的大小写（例如，若以全部小写的形式输入名字，它并不会自动首字母大写）。</li>
+        </ul>
+      </li>
+      <li>
+        <strong>动物偏好</strong> - 这将决定第一年春季获得的宠物的类型。有十个选项：五种狗，五种猫。
+      </li>
+      <li>
+        <strong>最喜欢的东西</strong> - 这将影响吃下星之果实后的文字显示。字符限制的文本框和名字/农场名字的是一样的。
+      </li>
+      <li>
+        <strong>性别</strong> - 这个对游戏的影响并不大，以后可以更改：
+        <ul>
+          <li>在对话中人物角色将使用合适的代词。</li>
+          <li>只能进入对应性别的温泉更衣室。（注：亚历克斯有时会在男更衣室里锻炼）</li>
+          <li>结婚的 NPC 是没有性别限制的。与异性结婚后，女方将怀孕 14 天（并不影响速度或活动）并生下一个孩子。而与同性结婚则可以收养孩子。</li>
+          <li>女性角色会收到爸爸的信，而男性角色会收到妈妈的信，且随信附赠的礼物有所差异。</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2 id="char">特殊字符</h2>
+    <p>创建玩家角色时，在“名字”、“农场名字”或是“最喜欢的东西”的输入框内输入一些特殊字符会产生一些特别的声音或符号。</p>
+    <!-- an2.png [X][E][X] 字符卷轴 -->
+    <p>输入以下字符会发出特别的声音。</p>
+    <ul>
+      <li>输入 `&lt;` 会发出“叮”声</li>
+      <li>输入 `$` 会发出“叮铃”声</li>
+      <li>输入 `*` 会发出敲击石头的声音</li>
+      <li>输入 `=` 会发出“噗”声</li>
+      <li>输入 `+` 会发出史莱姆移动的声音</li>
+    </ul>
+    <p>输入以下字符会显示特别的符号（游戏设置为中文时无效）</p>
+    <!-- an1.png 心形、箭头、@、星号字符卷轴 -->
+    <img class="scroll-img" src="./img/an1.png" alt="心形、@、五角星等特殊符号">
+    <ul>
+      <li>输入 `&lt;` 会变成 `♡` 符号</li>
+      <li>输入 `&gt;` 会变成 `▷` 符号</li>
+      <li>输入 `@` 会变成 `◁` 符号</li>
+      <li>输入 `$` 会变成 `⌾` 符号</li>
+      <li>输入 `*` 会变成 `💢` 符号</li>
+      <li>输入 `=` 会变成 `☆` 符号</li>
+    </ul>
+    <p>输入以下手柄按键时也会产生一些特别的声音或符号。</p>
+    <img class="scroll-img" src="./img/an2.png" alt="特殊字符[X][E][X]展示">
+    <h2 id="note">注释</h2>
+    <ul>
+      <li>输入某些文本作为最喜欢的东西会触发一个彩蛋。</li>
+      <li>一些特殊的按键如星号键将会触发某些声音。</li>
+      <li>玩家在《星露谷物语》中没有固定性格特征。当在游戏中的事件和对话框里做选择时，玩家可以选择任何选项不会影响剧情，尽管有些选项会影响好感度。</li>
+      <li>玩家可以和大多数的 NPC 成为朋友，没有互斥的友谊。（有些 NPC 如冈瑟是没有友谊值的。）</li>
+      <li>虽然 NPC 有呼吸动画，但玩家没有。相反，玩家会眨眼睛。</li>
+    </ul>
+
+    <h2 id="bug">漏洞</h2>
+    <p><strong>仅 PC/移动版：</strong> 可以使用物品生成代码为角色起名，只要 NPC 提到该角色的名字，就会送给玩家与该编号相对应的物品。例如，输入 [645][499][163] 将分别获得一个铱制洒水器、上古种子和一条传说之鱼。（这个漏洞也适用于给孩子和动物起名。）</p>
+
+    <h2 id="see">另见</h2>
+    <ul>
+      <li>友谊</li>
+      <li>婚姻</li>
+      <li>技能</li>
+    </ul>
+
+    <h2 id="history">历史</h2>
+    <ul>
+      <li>1.3.27：除了 PC 和移动版之外，其他所有版本都移除了物品 ID 命名漏洞。</li>
+      <li>1.4：加入新发型和不同的裤子。</li>
+      <li>1.5：加入更改名字和性别的功能，加入新发型。移除了使用物品 ID 命名漏洞获取错误物品。</li>
+      <li>1.6：加入11种新配饰。加入四个新的动物偏好选项（两种狗和两种猫）。</li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图鉴成就</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Noto Sans SC", Microsoft YaHei, sans-serif;
+  background: url("./img/bg.jpg") no-repeat fixed center / cover;
+  color: #111;
+  line-height: 1.7;
+}
+/* 页面双栏布局容器 */
+.wiki-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 16px;
+  padding: 20px 10px;
+}
+/* 左侧悬浮侧边目录 */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: rgba(209, 248, 255, 0.78);
+  border: 1px solid #84AEEC;
+  border-radius: 6px;
+  padding: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+.sidebar h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #a7d7f9;
+  padding-bottom: 6px;
+}
+.sidebar ul {
+  list-style: none;
+}
+.sidebar li {
+  margin: 6px 0;
+}
+.sidebar li a {
+  color: #0c3b64;
+  text-decoration: none;
+  font-size: 14px;
+}
+.sidebar li a:hover {
+  color: #2278bb;
+  text-decoration: underline;
+}
+/* 右侧正文区域 */
+.main-content {
+  flex: 1;
+  background: rgba(209, 248, 255, 0.73);
+  border: 1px solid #A7D7F9;
+  border-radius: 6px;
+  padding: 24px 32px;
+}
+/* 页面跳转按钮组 */
+.page-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.page-btn-group a {
+  padding: 6px 16px;
+  background: rgba(132, 174, 236, 0.4);
+  border: 1px solid #84AEEC;
+  border-radius: 4px;
+  color: #0c3b64;
+  text-decoration: none;
+}
+.page-btn-group a:hover {
+  background: rgba(132, 174, 236, 0.7);
+}
+h1 {
+  font-size: 28px;
+  color: #0f4069;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #a7d7f9;
+  padding-bottom: 8px;
+}
+h2 {
+  font-size: 22px;
+  color: #144b7a;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid #b9dcf8;
+  padding-bottom: 6px;
+}
+h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin: 20px 0 8px;
+}
+p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+ul, ol {
+  margin: 10px 0 10px 26px;
+}
+li {
+  margin: 6px 0;
+}
+/* 维基通用表格样式 */
+table.wikitable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background: rgba(255,255,255,0.65);
+}
+table.wikitable th, table.wikitable td {
+  border: 1px solid #84AEEC;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+table.wikitable th {
+  background: rgba(132, 174, 236, 0.4);
+  color: #0a3052;
+}
+/* 行内小图标 */
+.content-img {
+  max-width: 24px;
+  vertical-align: middle;
+  margin: 0 6px;
+  border: 2px solid #a7d7f9;
+  border-radius: 4px;
+}
+/* 三张图鉴并排容器 */
+.catalog-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin: 16px 0;
+}
+.catalog-col {
+  flex: 1;
+}
+.catalog-img {
+  width: 100%;
+  border: 3px solid #a7d7f9;
+  border-radius: 6px;
+}
+</style>
+</head>
+<body>
+<div class="wiki-wrap">
+  <!-- 左侧侧边导航目录 -->
+  <aside class="sidebar">
+    <h3>目录</h3>
+    <ul>
+      <li><a href="#intro">1 页面介绍</a></li>
+      <li><a href="#catalog-img">2 图鉴总图</a></li>
+      <li><a href="#achievement">3 游戏成就</a></li>
+    </ul>
+  </aside>
+
+  <!-- 右侧正文主体 -->
+  <main class="main-content">
+    <!-- 顶部按钮：返回主页 + 切换农作物 -->
+    <div class="page-btn-group">
+      <a href="index.html#content-wrap">返回主页</a>
+      <a href="tb2-1.html">农作物</a>
+    </div>
+
+    <h1>图鉴成就</h1>
+    <h2 id="intro">1 页面介绍</h2>
+    <p>本页面收录《星露谷物语》全部可获取物品图鉴总览，上方为完整三页图鉴缩略图横向并排展示，下方为游戏全成就列表。</p>
+
+    <h2 id="catalog-img">2 图鉴总图（三图并排）</h2>
+    <div class="catalog-row">
+      <div class="catalog-col">
+        <h3>第一页</h3>
+        <img class="catalog-img" src="./img/mulu1.png" alt="物品图鉴第一页">
+      </div>
+      <div class="catalog-col">
+        <h3>第二页</h3>
+        <img class="catalog-img" src="./img/mulu2.png" alt="物品图鉴第二页">
+      </div>
+      <div class="catalog-col">
+        <h3>第三页</h3>
+        <img class="catalog-img" src="./img/mulu3.png" alt="物品图鉴第三页">
+      </div>
+    </div>
+
+    <h2 id="achievement">3 游戏成就</h2>
+    <table class="wikitable">
+      <tr>
+        <th>成就名称</th>
+        <th>达成条件</th>
+      </tr>
+      <tr>
+        <td>新人农夫</td>
+        <td>完成第一次收获</td>
+      </tr>
+      <tr>
+        <td>规模化种植</td>
+        <td>单次收获250份农作物</td>
+      </tr>
+      <tr>
+        <td>农业大师</td>
+        <td>集齐全部季节性作物</td>
+      </tr>
+      <tr>
+        <td>巨型作物</td>
+        <td>收获任意巨大农作物</td>
+      </tr>
+      <tr>
+        <td>牧场主</td>
+        <td>拥有全部畜牧动物</td>
+      </tr>
+      <tr>
+        <td>酿酒大师</td>
+        <td>制作300瓶酒类饮品</td>
+      </tr>
+      <tr>
+        <td>美食家</td>
+        <td>学会全部烹饪食谱</td>
+      </tr>
+      <tr>
+        <td>渔夫</td>
+        <td>钓起60条鱼</td>
+      </tr>
+      <tr>
+        <td>海洋之王</td>
+        <td>集齐全部鱼类图鉴</td>
+      </tr>
+      <tr>
+        <td>采矿学徒</td>
+        <td>到达矿井40层</td>
+      </tr>
+      <tr>
+        <td>深渊探险家</td>
+        <td>到达矿井100层</td>
+      </tr>
+      <tr>
+        <td>宝藏猎人</td>
+        <td>收集全部古物</td>
+      </tr>
+      <tr>
+        <td>社区修复者</td>
+        <td>完成社区中心全部收集包</td>
+      </tr>
+      <tr>
+        <td>完美农场</td>
+        <td>达成完美度100%</td>
+      </tr>
+    </table>
+  </main>
+</div>
+</body>
+</html>

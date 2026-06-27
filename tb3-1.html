@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>季节</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Noto Sans SC", Microsoft YaHei, sans-serif;
+  background: url("./img/bg.jpg") no-repeat fixed center / cover;
+  color: #111;
+  line-height: 1.7;
+}
+/* 页面单栏布局，取消侧边专栏 */
+.wiki-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 10px;
+}
+.main-content {
+  background: rgba(209, 248, 255, 0.73);
+  border: 1px solid #A7D7F9;
+  border-radius: 6px;
+  padding: 24px 32px;
+}
+/* 页面跳转按钮组 */
+.page-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.page-btn-group a {
+  padding: 6px 16px;
+  background: rgba(132, 174, 236, 0.4);
+  border: 1px solid #84AEEC;
+  border-radius: 4px;
+  color: #0c3b64;
+  text-decoration: none;
+}
+.page-btn-group a:hover {
+  background: rgba(132, 174, 236, 0.7);
+}
+h1 {
+  font-size: 28px;
+  color: #0f4069;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #a7d7f9;
+  padding-bottom: 8px;
+}
+h2 {
+  font-size: 22px;
+  color: #144b7a;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid #b9dcf8;
+  padding-bottom: 6px;
+}
+h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin: 20px 0 8px;
+}
+p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+ul, ol {
+  margin: 10px 0 10px 26px;
+}
+li {
+  margin: 6px 0;
+}
+/* 维基通用表格样式 */
+table.wikitable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background: rgba(255,255,255,0.65);
+}
+table.wikitable th, table.wikitable td {
+  border: 1px solid #84AEEC;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+table.wikitable th {
+  background: rgba(132, 174, 236, 0.4);
+  color: #0a3052;
+}
+/* 文字前小图标（四季小字图标，24px统一尺寸） */
+.season-small-icon {
+  width: 24px;
+  vertical-align: middle;
+  margin: 0 6px;
+  border: 2px solid #a7d7f9;
+  border-radius: 4px;
+}
+/* 顶部容器：文字左 + 总览图右 */
+.top-container {
+  display: flex;
+  gap: 24px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.text-block {
+  flex: 2;
+  min-width: 500px;
+}
+.jijie-img-block {
+  flex: 1;
+  min-width: 100px;
+  max-width: 100px;
+}
+/* 总览图缩小限制最大宽度 */
+.season-big-img {
+  width: 100%;
+  max-width: 300px;
+  border: 3px solid #a7d7f9;
+  border-radius: 6px;
+}
+</style>
+</head>
+<body>
+<div class="wiki-wrap">
+  <main class="main-content">
+    <!-- 跳转按钮：返回主页、天气、节日 -->
+    <div class="page-btn-group">
+      <a href="index.html#content-wrap">返回主页</a>
+      <a href="tb3-2.html">天气</a>
+      <a href="tb3-3.html">节日</a>
+    </div>
+
+    <h1>季节</h1>
+
+    <!-- 基础介绍文字居左，季节总览大图居右（总览图缩小） -->
+    <div class="top-container">
+      <div class="text-block">
+        <h2 id="base">1 基础介绍</h2>
+        <p>在星露谷物语中有四个季节：
+          <img class="season-small-icon" src="./img/chun.png" alt="春季">春季、
+          <img class="season-small-icon" src="./img/xia.png" alt="夏季">夏季、
+          <img class="season-small-icon" src="./img/qiu.png" alt="秋季">秋季、
+          <img class="season-small-icon" src="./img/dong.png" alt="冬季">冬季。
+          每个季节都有28天。游戏开局起始为春季第一天。
+        </p>
+        <p>完整四季循环结束后年份自动+1，游戏无游玩年限上限。居民作息、地图外观会随季节发生变化。</p>
+        <p>各类农作物、野外采集物、鱼类都拥有专属季节限定；皮埃尔杂货店、Joja超市售卖种子会随季节轮换。</p>
+      </div>
+      <div class="jijie-img-block">
+        <h3>四季总览图</h3>
+        <img class="season-big-img" src="./img/jijie.png" alt="四季总览像素图">
+      </div>
+    </div>
+
+    <h2 id="change">2 换季机制</h2>
+    <p>每个季节固定28天，28日结束后进入下一季，规则如下：</p>
+    <ul>
+      <li>非跨季室外农作物会直接枯萎死亡；咖啡豆、玉米、小麦、上古水果等跨季作物不受换季摧毁；</li>
+      <li>土地施加的肥料换季失效，仅长期多季作物可保留肥料效果；</li>
+      <li>换季会随机清除部分耕地、刷新野外杂物；冬转春时地图杂物刷新量最多；</li>
+      <li>耕地上存活/枯萎作物不会随耕地一同消失。</li>
+    </ul>
+
+    <h2 id="special">3 不受季节影响的区域</h2>
+    <ul>
+      <li>室内建筑、温室；</li>
+      <li>地下区域：矿井、骷髅洞穴、下水道；</li>
+      <li>沙漠、姜岛全地图。</li>
+    </ul>
+    <p>以上区域内作物、鱼类、采集物不受室外季节限制。</p>
+
+    <h2 id="tip">4 你知道吗</h2>
+    <p>开局过场动画抵达星露谷时并非春季，但玩家操控角色醒来后的第一天固定为春季1日。</p>
+    <p>第一年夏季第3天会触发地震剧情，解锁铁路与温泉区域。</p>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>节日</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Noto Sans SC", Microsoft YaHei, sans-serif;
+  background: url("./img/bg.jpg") no-repeat fixed center / cover;
+  color: #111;
+  line-height: 1.7;
+}
+/* 统一单栏无侧边布局 */
+.wiki-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 10px;
+}
+.main-content {
+  background: rgba(209, 248, 255, 0.73);
+  border: 1px solid #A7D7F9;
+  border-radius: 6px;
+  padding: 24px 32px;
+}
+/* 顶部按钮组 */
+.page-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.page-btn-group a {
+  padding: 6px 16px;
+  background: rgba(132, 174, 236, 0.4);
+  border: 1px solid #84AEEC;
+  border-radius: 4px;
+  color: #0c3b64;
+  text-decoration: none;
+}
+.page-btn-group a:hover {
+  background: rgba(132, 174, 236, 0.7);
+}
+h1 {
+  font-size: 28px;
+  color: #0f4069;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #a7d7f9;
+  padding-bottom: 8px;
+}
+h2 {
+  font-size: 22px;
+  color: #144b7a;
+  margin: 28px 0 12px;
+  border-bottom: 1px solid #b9dcf8;
+  padding-bottom: 6px;
+}
+h3 {
+  font-size: 18px;
+  color: #195b96;
+  margin: 20px 0 8px;
+}
+p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+ul, ol {
+  margin: 10px 0 10px 26px;
+}
+li {
+  margin: 6px 0;
+}
+/* 维基通用表格 */
+table.wikitable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  background: rgba(255,255,0.65);
+}
+table.wikitable th, table.wikitable td {
+  border: 1px solid #84AEEC;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+table.wikitable th {
+  background: rgba(132, 174, 236, 0.4);
+  color: #0a3052;
+}
+/* 节日展示大图样式 */
+.festival-img {
+  width: 100%;
+  max-width: 600px;
+  border: 3px solid #a7d7f9;
+  border-radius: 6px;
+  margin: 8px 0 16px;
+}
+</style>
+</head>
+<body>
+<div class="wiki-wrap">
+  <main class="main-content">
+    <!-- 跳转按钮：返回主页、季节、天气 -->
+    <div class="page-btn-group">
+      <a href="index.html#content-wrap">返回主页</a>
+      <a href="tb3-1.html">季节</a>
+      <a href="tb3-2.html">天气</a>
+    </div>
+
+    <h1>节日</h1>
+    <p><strong>节日</strong>是星露谷物语中的特殊事件。镇长刘易斯会在每个节日之前给玩家一封信件，通知节日的时间地点。在节日当天，屏幕左侧的弹出窗口会提示玩家节日已经开始。如果玩家选择参加一个节日（夜市、沙漠、鳟鱼大赛、鱿鱼节除外），离开后会回到深夜的农场。</p>
+    <p>如果当天是除沙漠节、鳟鱼大赛、鱿鱼节、夜市以外的节日，则动物不需要喂养；游戏会自动视动物已被喂食。</p>
+    <p>是否参加节日完全可选。节日期间和村民交谈会增加好感，部分节日会额外提升友谊获取效率。</p>
+    <p>多人游戏中，除夜市外所有在线玩家都需要进入节日区域才能开启活动，节日结束逻辑和单人一致。</p>
+
+    <h2 id="base">1 节日当天通用规则</h2>
+    <p>大部分节日需要在指定时间段前往对应场地才能开启活动。</p>
+    <p>常规节日当天全镇建筑、居民房屋全部上锁，无法进入；下水道、社区中心、电影院、温泉不受限制。</p>
+    <ul>
+      <li>罗宾的木工工期遇节日顺延，但已开工不会暂停；克林特锻造计时不受节日影响。</li>
+      <li>沙漠节、鳟鱼大赛、鱿鱼节、夜市为特殊节日，当日商店民居正常开放，游戏时间正常流逝。</li>
+      <li>小镇钥匙在节日上锁房屋场景下无法生效。</li>
+    </ul>
+
+    <h2 id="spring">2 春季节日</h2>
+    <h3>2.1 复活节</h3>
+    <p>举办时间：春季13日 09:00-14:00，地点鹈鹕镇广场，结束后22点返回农场。</p>
+    <p>核心玩法：彩蛋竞赛，与刘易斯开启比赛，50秒内收集9个彩蛋即可获胜。</p>
+    <ul>
+      <li>首次胜利奖励草帽；重复胜利获得兑奖券。</li>
+      <li>皮埃尔摊位可购买绒毛兔子、限定草莓种子（仅复活节、沙漠节售卖）。</li>
+    </ul>
+
+    <h3>2.2 沙漠节</h3>
+    <p>举办时间：春季15-17日 10:00-02:00，地点沙漠。</p>
+    <p>无需等待巴士即可前往，包含商店、下注竞赛、任务兑换货币，每日可找艾米丽领取新时装。游戏时间正常流动，居民不会居家封闭。</p>
+
+    <h3>2.3 花舞节</h3>
+    <p>举办时间：春季24日 09:00-14:00，地点煤矿森林西侧法师塔南部专属场地，结束后22点回农场。</p>
+    <ul>
+      <li>摊位售卖各类花卉、季节性装饰、珍奇乌鸦、壁挂装饰等道具。</li>
+      <li>可与4心以上单身NPC跳舞，单次增加250点好感（1颗心），跳舞前提前对话邀约，与刘易对话开启舞会。</li>
+    </ul>
+
+    <h2 id="summer">3 夏季节日</h2>
+    <h3>3.1 夏威夷宴会</h3>
+    <p>举办时间：夏季11日 09:00-14:00，沙滩场地，结束22点回农场。</p>
+    <p>特色百乐汤活动，向汤内投放材料会影响全部村民好感，与刘易斯开启品尝环节，结束自动离场，皮埃尔开设节日摊位。</p>
+
+    <h3>3.2 鳟鱼大赛</h3>
+    <p>举办时间：夏季20-21日 06:10-02:00，玛妮牧场旁河流。</p>
+    <p>全天可钓虹鳟，收集黄金标签兑换奖品；商店民居正常开放，时间正常流逝，动物仍需喂食。</p>
+
+    <h3>3.3 月光水母起舞</h3>
+    <p>举办时间：夏季28日 22:00-00:00，沙滩码头，零点返回农场。</p>
+    <p>皮埃尔售卖水母帘子、星空贴纸、海泡布丁等限定装饰，与刘易斯对话观看水母群，活动结束自动离场。</p>
+
+    <h2 id="autumn">4 秋季节日</h2>
+    <h3>4.1 星露谷展览会</h3>
+    <p>举办时间：秋季16日 09:00-15:00，鹈鹕镇广场，22点返回农场。</p>
+    <ul>
+      <li>游玩摊位获取星星币，入口商店兑换稀有道具。</li>
+      <li>农场展品评比，提前摆放展品后找刘易斯评分，展品离场可取回。</li>
+      <li>格斯提供免费救生汉堡，离开节日后生效增益。</li>
+    </ul>
+
+    <h3>4.2 万灵节</h3>
+    <p>举办时间：秋季27日 22:00-23:50，鹈鹕镇，零点回农场。</p>
+    <p>核心迷宫奖励：奇数年黄金南瓜，偶数兑奖券；皮埃尔售卖南瓜灯、墓石、珍奇乌鸦等万圣节装饰，迷宫终点有矿车捷径。</p>
+
+    <h2 id="winter">5 冬季节日</h2>
+    <h3>5.1 冰雪节</h3>
+    <p>举办时间：冬季8日 09:00-14:00，煤矿森林冰场，22点返回农场。</p>
+    <p>冰钓竞赛，第一年集齐5条鱼奖励渔具、水手帽，后续胜利获得兑奖；刘易斯宣布名次后节日结束。</p>
+
+    <h3>5.2 鱿鱼节</h3>
+    <p>举办时间：冬季12-13日全天，海边垂钓区域。</p>
+    <p>全天可钓鱿鱼，能获取稀有捕蟹秘籍；商店民居正常开放，时间正常流动，动物需要喂食。</p>
+
+    <h3>5.3 夜市</h3>
+    <p>举办时间：冬季15-17日 17:00-02:00，沙滩。</p>
+    <p>包含商店、美人鱼表演、深海潜艇，可捕获专属夜间鱼类；全镇建筑不关闭，时间正常流逝，动物需喂食。</p>
+
+    <h3>5.4 冬日星盛宴</h3>
+    <p>举办时间：冬季25日 09:00-14:00，鹈鹕镇，22点返回农场。</p>
+    <p>随机村民互赠礼物，冬季18日刘易斯寄信告知送礼对象，离开小镇活动结束。</p>
+
+    <h2 id="history">6 版本历史</h2>
+    <ul>
+      <li>1.3.27：新增夜市节日</li>
+      <li>1.4：节日对话可增加好感，修复农场内外时间流速bug</li>
+      <li>1.6：新增沙漠节、鳟鱼大赛、鱿鱼节三大长期节日</li>
+    </ul>
+
+    <h2 id="nav">7 节日导航表</h2>
+    <table class="wikitable">
+      <tr>
+        <th>春季</th>
+        <td>复活节 • 沙漠节 • 花舞节</td>
+      </tr>
+      <tr>
+        <th>夏季</th>
+        <td>夏威夷宴会 • 鳟鱼大赛 • 月光水母起舞</td>
+      </tr>
+      <tr>
+        <th>秋季</th>
+        <td>星露谷展览会 • 万灵节</td>
+      </tr>
+      <tr>
+        <th>冬季</th>
+        <td>冰雪节 • 鱿鱼节 • 夜市 • 冬日星盛宴</td>
+      </tr>
+    </table>
+  </main>
+</div>
+</body>
+</html>
